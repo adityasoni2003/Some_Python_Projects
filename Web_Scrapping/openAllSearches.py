@@ -3,10 +3,11 @@ import requests,sys,webbrowser,bs4,pyperclip
 
     
 res = requests.get('https://pypi.org/search/?q=' +'+'.join(sys.argv[1:]) +'&o=')
-print(res.text)
+
 
 soup = bs4.BeautifulSoup(res.text , 'html.parser')
 linkElems = soup.select('.package_snippet')
+print(linkElems.get('href'))
 
 numOpen = min(5,len(linkElems))
 
